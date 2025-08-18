@@ -1,20 +1,13 @@
-import { ProfileHeader } from "@/components/ProfileHeader";
 import React from "react";
 import { ScrollView, Text, StyleSheet } from "react-native";
-import {StatsRow} from "@/components/StatsRow";
-import {Availability} from "@/components/Availability";
-import {Preferences} from "@/components/Preferences";
-import {JobsList} from "@/components/JobsList";
-import {ServicesSection} from "@/components/ServicesSection";
+import { ProfileHeader } from "@/components/AppComponents/ProfileHeader";
+import { StatsRow } from "@/components/AppComponents/StatsRow";
+import { Availability } from "@/components/AppComponents/Availability";
+import { Preferences } from "@/components/AppComponents/Preferences";
+import { JobsList } from "@/components/AppComponents/JobsList";
+import { ServicesSection } from "@/components/AppComponents/ServicesSection";
+import EarningsChart from "@/components/AppComponents/EarningsChart";
 
-
-function Stat() {
-    return null;
-}
-
-function EarningsChart() {
-    return null;
-}
 
 export default function ProfileDashboardScreen() {
     return (
