@@ -161,8 +161,8 @@ class AnimatedSvgBackground extends React.Component<{ animatedX: Animated.Value 
 
         return (
             <Svg width={width} height={tabHeight}>
-                <Path d={path} fill="white" />
-                <Path d={path} fill="#6CC76E" />
+                <Path d={path} fill="#FFFFFF" />
+                <Path d={path} fill="#78C45E" />
             </Svg>
         );
     }
@@ -182,6 +182,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
+        bottom: 12,
         height: tabHeight,
     },
     floatingCircle: {
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         borderRadius: 30,
-        backgroundColor: "#3BB2E5",
+        backgroundColor: "#43B0D8",
         justifyContent: "center",
         alignItems: "center",
         shadowColor: "#000",
