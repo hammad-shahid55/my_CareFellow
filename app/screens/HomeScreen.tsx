@@ -62,7 +62,7 @@ export default function HomeScreen() {
                         isActive={activeItem === "Profile"}
                         onPress={() => {
                             setActiveItem("Profile");
-                            router.push("//screens/ProfileDashboardScreen");
+                            router.push("/screens/ProfileDashboardScreen");
                         }}
                     />
                     <MenuItem
