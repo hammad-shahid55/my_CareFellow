@@ -13,8 +13,8 @@ export default function ProfileDashboardScreen() {
         <SafeAreaView style={styles.safeArea}>
             <ScrollView
                 style={styles.container}
-                contentContainerStyle={styles.scrollContent} // 👈 ensures spacing
-                showsVerticalScrollIndicator={false}       // 👈 clean look
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
             >
                 <Text style={styles.welcome}>Welcome to Carefellow 👋</Text>
                 <Text style={styles.desc}>
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: "gray",
         marginHorizontal: 15,
-        marginBottom: 10
+        marginBottom: 15
     },
 });

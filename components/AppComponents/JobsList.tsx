@@ -1,23 +1,33 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 
-export const JobsList = () => {
-    const jobs = [1, 2, 3]; // dummy list
+type JobsListProps = {
+    count?: number;   // how many jobs to render
+    title?: string;   // custom title (default: "Jobs")
+};
+
+export const JobsList = ({ count = 3, title = "Jobs" }: JobsListProps) => {
+    const jobs = Array.from({ length: count }, (_, i) => i + 1);
+    const router = useRouter();
 
     return (
         <View style={styles.container}>
             {/* Header with Jobs & Menu */}
             <View style={styles.headerRow}>
                 <View style={styles.titleRow}>
-                    <Text style={styles.title}>Jobs</Text>
+                    <Text style={styles.title}>{title}</Text>
                     <View style={styles.countBox}>
-                        <Text style={styles.countText}>1</Text>
+                        <Text style={styles.countText}>{jobs.length}</Text>
                     </View>
                 </View>
 
                 {/* Right menu buttons */}
                 <View style={styles.menuRow}>
-                    <TouchableOpacity style={styles.menuBtnGreen}>
+                    <TouchableOpacity
+                        style={styles.menuBtnGreen}
+                        onPress={() => router.push("../screens/CareRequestsScreen")}
+                    >
                         <Text style={styles.menuBtnTextWhite}>Messages</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuBtnGreen}>
@@ -108,7 +118,7 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         borderRadius: 4,
     },
-    countText: { fontWeight: "700", color: "black" ,fontSize:15},
+    countText: { fontWeight: "700", color: "black", fontSize: 15 },
 
     /* Menu Buttons */
     menuRow: { flexDirection: "row" },
@@ -154,9 +164,8 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         backgroundColor: "#78C45E",
         marginLeft: 8,
-        marginBottom:-10
+        marginBottom: -10,
     },
-
     btnTextWhite: { color: "white", fontWeight: "600", fontSize: 12 },
 
     /* Info Row */
@@ -169,7 +178,7 @@ const styles = StyleSheet.create({
         marginRight: 6,
     },
     badgeText: { fontSize: 12, fontWeight: "600", color: "#0BA02C" },
-    rate: { fontWeight: "600" , color:"#767F8C"},
+    rate: { fontWeight: "600", color: "#767F8C" },
 
     /* Content */
     contentRow: { flexDirection: "row", justifyContent: "space-between" },
@@ -183,12 +192,22 @@ const styles = StyleSheet.create({
         borderColor: "#78C45E",
         marginRight: 10,
     },
-    name: { fontWeight: "700", fontSize: 16, left:-7},
-    locRow: { flexDirection: "row", alignItems: "center", marginTop: 2 ,left:-8},
+    name: { fontWeight: "700", fontSize: 16, left: -7 },
+    locRow: { flexDirection: "row", alignItems: "center", marginTop: 2, left: -8 },
     locIcon: { width: 12, height: 12, marginRight: 4, tintColor: "gray" },
-    location: { color: "#767F8C", fontSize: 11.5 ,left:-3,  fontFamily: "ProximaNova-Regular",},
-    desc: { color: "#767F8C", fontSize: 13, marginBottom: 10,fontFamily: "ProximaNova-Regular", },
+    location: {
+        color: "#767F8C",
+        fontSize: 11.5,
+        left: -3,
+        fontFamily: "ProximaNova-Regular",
+    },
+    desc: {
+        color: "#767F8C",
+        fontSize: 13,
+        marginBottom: 10,
+        fontFamily: "ProximaNova-Regular",
+    },
 
     /* Map */
-    map: { width: 130, height: 122, borderRadius: 6 , marginTop: -15 },
+    map: { width: 130, height: 122, borderRadius: 6, marginTop: -15 },
 });
