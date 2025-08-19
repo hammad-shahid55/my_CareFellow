@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     dayInner: {
         backgroundColor: "white",
         borderRadius: 8,
-        paddingVertical: 8,
+        paddingVertical: 16,
         paddingHorizontal: 14,
     },
     dayText: {
