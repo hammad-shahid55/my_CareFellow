@@ -9,8 +9,10 @@ import {
     ScrollView,
     SafeAreaView,
 } from "react-native";
+import { useRouter } from "expo-router"; // ✅ for navigation
 
 export default function CareRequestsScreen(): JSX.Element {
+    const router = useRouter();
     const jobs = Array.from({ length: 5 }, (_, i) => i + 1);
 
     return (
@@ -63,7 +65,15 @@ export default function CareRequestsScreen(): JSX.Element {
                                 <TouchableOpacity style={styles.btn}>
                                     <Text style={styles.btnTextWhite}>Favorite</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.btn}>
+                                <TouchableOpacity
+                                    style={styles.btn}
+                                    onPress={() =>
+                                        router.push({
+                                            pathname: "../screens/CareRequestDetailScreen",
+                                          // send jobId
+                                        })
+                                    }
+                                >
                                     <Text style={styles.btnTextWhite}>Apply</Text>
                                 </TouchableOpacity>
                             </View>
@@ -150,7 +160,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginLeft: 8,
     },
-    dropdownText: { fontSize: 14, color: "#767F8C" },
+    dropdownText: { fontSize: 14, color: "#8F9BBA" },
 
     /* Jobs Header */
     jobsHeader: {
@@ -168,7 +178,7 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         paddingHorizontal: 14,
     },
-    refreshText: { color: "#43B0D8", fontWeight: "600" },
+    refreshText: { color: "#43B0D8" },
 
     /* Card */
     card: {
