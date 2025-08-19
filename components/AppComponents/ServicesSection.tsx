@@ -1,45 +1,53 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const ServicesSection: React.FC = () => {
     return (
-        <View style={styles.container}>
-            {/* Header */}
-            <View style={styles.header}>
-                <View style={styles.headerLeft}>
-                    <Text style={styles.title}>Services</Text>
-                    <View style={styles.countBox}>
-                        <Text style={styles.countText}>12</Text>
+        <LinearGradient
+            colors={["#4CAF50", "#2196F3"]}
+            style={styles.gradientBorder}
+        >
+            <View style={styles.container}>
+                {/* Header */}
+                <View style={styles.header}>
+                    <View style={styles.headerLeft}>
+                        <Text style={styles.title}>Services</Text>
+                        <View style={styles.countBox}>
+                            <Text style={styles.countText}>12</Text>
+                        </View>
                     </View>
+                    <TouchableOpacity style={styles.viewBtn}>
+                        <Text style={styles.viewText}>View</Text>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.viewBtn}>
-                    <Text style={styles.viewText}>View</Text>
-                </TouchableOpacity>
-            </View>
 
-            {/* Tags */}
-            <View style={styles.tagsContainer}>
-                <Text style={styles.tag}>Bronx CB 1</Text>
-                <Text style={styles.tag}>Bronx CB 1</Text>
-                <Text style={styles.tag}>Bronx CB 1</Text>
-                <Text style={styles.tag}>Near Me: 20 miles</Text>
-                <Text style={styles.tag}>Near Me: 20 miles</Text>
-                <Text style={styles.tag}>Bronx CB 1</Text>
-                <Text style={styles.tag}>Bronx CB 1</Text>
-                <Text style={styles.tag}>Bronx CB 1</Text>
+                {/* Tags */}
+                <View style={styles.tagsContainer}>
+                    <Text style={styles.tag}>Bronx CB 1</Text>
+                    <Text style={styles.tag}>Bronx CB 1</Text>
+                    <Text style={styles.tag}>Bronx CB 1</Text>
+                    <Text style={styles.tag}>Near Me: 20 miles</Text>
+                    <Text style={styles.tag}>Near Me: 20 miles</Text>
+                    <Text style={styles.tag}>Bronx CB 1</Text>
+                    <Text style={styles.tag}>Bronx CB 1</Text>
+                    <Text style={styles.tag}>Bronx CB 1</Text>
+                </View>
             </View>
-        </View>
+        </LinearGradient>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    gradientBorder: {
         margin: 15,
-        padding: 12,
-        borderWidth: 1,
-        borderColor: "#4CAF50",
+        borderRadius: 12,
+        padding: 1.25,
+    },
+    container: {
         borderRadius: 12,
         backgroundColor: "#fff",
+        padding: 15,
     },
     header: {
         flexDirection: "row",
@@ -57,40 +65,42 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     countBox: {
-        backgroundColor: "#4CAF50",
-        paddingHorizontal: 8,
+        backgroundColor: "#C5F8B3",
+        paddingHorizontal: 6,
         paddingVertical: 2,
-        borderRadius: 4,
+        borderRadius: 4
+
     },
     countText: {
-        color: "#fff",
-        fontWeight: "bold",
-        fontSize: 13,
+        color: "#000",
+        fontWeight: "900",
+        fontSize: 14,
     },
     viewBtn: {
         borderWidth: 1,
-        borderColor: "#4CAF50",
-        paddingHorizontal: 12,
+        borderColor: "#78C45E",
+        paddingHorizontal: 14,
         paddingVertical: 4,
         borderRadius: 6,
     },
     viewText: {
-        color: "#4CAF50",
-        fontSize: 13,
+        color: "#78C45E",
+        fontSize: 14,
         fontWeight: "500",
     },
     tagsContainer: {
         flexDirection: "row",
         flexWrap: "wrap",
+        gap: 5,
     },
     tag: {
         borderWidth: 1,
-        borderColor: "skyblue",
-        borderRadius: 6,
+        borderColor: "#43B0D8",
+        borderRadius: 8,
         paddingVertical: 6,
-        paddingHorizontal: 12,
-        marginRight: 6,
-        marginBottom: 6,
-        fontSize: 13,
+        paddingHorizontal: 14,
+        fontFamily: "ProximaNova-Regular",
+        fontSize: 14,
+        color: "#000",
     },
 });

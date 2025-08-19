@@ -15,23 +15,41 @@ const EarningsChart: React.FC = () => {
                 <Image
                     source={require("../../assets/images/earnings-chart.png")}
                     style={styles.chartImg}
-                    resizeMode="contain"
+                    resizeMode="stretch"
                 />
             </View>
 
-            {/* Legend */}
-            <View style={styles.legend}>
+            {/* Legend Box */}
+            <View style={styles.legendBox}>
+                {/* Pay */}
                 <View style={styles.legendItem}>
                     <View style={[styles.dot, { backgroundColor: "orange" }]} />
-                    <Text style={styles.legendText}>Pay 63%</Text>
+                    <View style={styles.textCol}>
+                        <Text style={styles.legendLabel}>Pay</Text>
+                        <Text style={styles.legendValue}>63%</Text>
+                    </View>
                 </View>
+
+                <View style={styles.divider} />
+
+                {/* Hours */}
                 <View style={styles.legendItem}>
                     <View style={[styles.dot, { backgroundColor: "purple" }]} />
-                    <Text style={styles.legendText}>Hours 25%</Text>
+                    <View style={styles.textCol}>
+                        <Text style={styles.legendLabel}>Hours</Text>
+                        <Text style={styles.legendValue}>25%</Text>
+                    </View>
                 </View>
+
+                <View style={styles.divider} />
+
+                {/* Earnings */}
                 <View style={styles.legendItem}>
                     <View style={[styles.dot, { backgroundColor: "gold" }]} />
-                    <Text style={styles.legendText}>Earnings 25%</Text>
+                    <View style={styles.textCol}>
+                        <Text style={styles.legendLabel}>Earnings</Text>
+                        <Text style={styles.legendValue}>25%</Text>
+                    </View>
                 </View>
             </View>
         </View>
@@ -66,29 +84,56 @@ const styles = StyleSheet.create({
         height: 150,
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 10,
+        marginBottom: 15,
     },
     chartImg: {
         width: "100%",
         height: "100%",
     },
-    legend: {
+    legendBox: {
         flexDirection: "row",
-        justifyContent: "space-around",
-        marginTop: 5,
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#E0E0E0",
+        borderRadius: 12,
+        backgroundColor: "#fff",
+        shadowColor: "#000",
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 2,
+        paddingVertical: 12,
     },
     legendItem: {
-        flexDirection: "row",
+        flex: 1,
+        flexDirection: "row", // dot left, text right
+        justifyContent: "center",
         alignItems: "center",
     },
-    dot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        marginRight: 5,
+    textCol: {
+        alignItems: "center",
+        marginLeft: 6,
     },
-    legendText: {
-        fontSize: 12,
-        color: "gray",
+    divider: {
+        width: 1,
+        height: "70%",
+        backgroundColor: "#5A3E85",
+    },
+    dot: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+    },
+    legendLabel: {
+        fontSize: 13,
+        fontWeight: "600",
+        color: "#444",
+    },
+    legendValue: {
+        fontSize: 14,
+        fontWeight: "700",
+        color: "#000",
+        marginTop: 2,
     },
 });
