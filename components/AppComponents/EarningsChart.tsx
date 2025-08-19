@@ -23,9 +23,11 @@ const EarningsChart: React.FC = () => {
             <View style={styles.legendBox}>
                 {/* Pay */}
                 <View style={styles.legendItem}>
-                    <View style={[styles.dot, { backgroundColor: "orange" }]} />
-                    <View style={styles.textCol}>
+                    <View style={styles.row}>
+                        <View style={[styles.dot, { backgroundColor: "orange" }]} />
                         <Text style={styles.legendLabel}>Pay</Text>
+                    </View>
+                    <View style={styles.valueWrapper}>
                         <Text style={styles.legendValue}>63%</Text>
                     </View>
                 </View>
@@ -34,9 +36,11 @@ const EarningsChart: React.FC = () => {
 
                 {/* Hours */}
                 <View style={styles.legendItem}>
-                    <View style={[styles.dot, { backgroundColor: "purple" }]} />
-                    <View style={styles.textCol}>
+                    <View style={styles.row}>
+                        <View style={[styles.dot, { backgroundColor: "purple" }]} />
                         <Text style={styles.legendLabel}>Hours</Text>
+                    </View>
+                    <View style={styles.valueWrapper}>
                         <Text style={styles.legendValue}>25%</Text>
                     </View>
                 </View>
@@ -45,9 +49,11 @@ const EarningsChart: React.FC = () => {
 
                 {/* Earnings */}
                 <View style={styles.legendItem}>
-                    <View style={[styles.dot, { backgroundColor: "gold" }]} />
-                    <View style={styles.textCol}>
+                    <View style={styles.row}>
+                        <View style={[styles.dot, { backgroundColor: "gold" }]} />
                         <Text style={styles.legendLabel}>Earnings</Text>
+                    </View>
+                    <View style={styles.valueWrapper}>
                         <Text style={styles.legendValue}>25%</Text>
                     </View>
                 </View>
@@ -78,7 +84,7 @@ const styles = StyleSheet.create({
     },
     dropdown: {
         fontSize: 14,
-        color: "gray",
+        color: "#626A83",
     },
     chartBox: {
         height: 150,
@@ -98,42 +104,44 @@ const styles = StyleSheet.create({
         borderColor: "#E0E0E0",
         borderRadius: 12,
         backgroundColor: "#fff",
-        shadowColor: "#000",
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-        shadowOffset: { width: 0, height: 2 },
-        elevation: 2,
-        paddingVertical: 12,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
     },
     legendItem: {
         flex: 1,
-        flexDirection: "row", // dot left, text right
-        justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
     },
-    textCol: {
+    row: {
+        flexDirection: "row",
         alignItems: "center",
-        marginLeft: 6,
     },
     divider: {
         width: 1,
         height: "70%",
-        backgroundColor: "#5A3E85",
+        backgroundColor: "#290A50",
+        marginHorizontal: 6,
     },
     dot: {
         width: 10,
         height: 10,
         borderRadius: 5,
+        marginRight: 5,
     },
     legendLabel: {
         fontSize: 13,
         fontWeight: "600",
-        color: "#444",
+        color: "#626A83",
+    },
+    valueWrapper: {
+        alignItems: "flex-start",
+        width: "100%",
     },
     legendValue: {
+        left:15,
         fontSize: 14,
         fontWeight: "700",
         color: "#000",
         marginTop: 2,
     },
+
 });
