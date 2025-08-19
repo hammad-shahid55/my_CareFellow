@@ -8,10 +8,9 @@ import { JobsList } from "@/components/AppComponents/JobsList";
 import { ServicesSection } from "@/components/AppComponents/ServicesSection";
 import EarningsChart from "@/components/AppComponents/EarningsChart";
 
-
 export default function ProfileDashboardScreen() {
     return (
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={styles.container}>
             <Text style={styles.welcome}>Welcome to Carefellow 👋</Text>
             <Text style={styles.desc}>
                 CareFellows will conduct a background check, and once completed,
@@ -31,6 +30,10 @@ export default function ProfileDashboardScreen() {
 }
 
 const styles = StyleSheet.create({
-    welcome: { fontSize: 18, fontWeight: "bold", margin: 15 },
+    container: {
+        flex: 1,
+        paddingTop: 40, // 👈 space above screen
+    },
+    welcome: { fontSize: 18, fontWeight: "bold", margin: 15 , color:"#626A83"},
     desc: { fontSize: 14, color: "gray", marginHorizontal: 15, marginBottom: 10 },
 });
