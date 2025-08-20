@@ -26,11 +26,13 @@ export const JobsList = ({ count = 3, title = "Jobs" }: JobsListProps) => {
                 <View style={styles.menuRow}>
                     <TouchableOpacity
                         style={styles.menuBtnGreen}
-                        onPress={() => router.push("../screens/CareRequestsScreen")}
+
                     >
-                        <Text style={styles.menuBtnTextWhite}>Messages</Text>
+                        <Text style={styles.menuBtnTextWhite}
+                              onPress={() => router.push("../screens/MessagesScreen")}>Messages</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.menuBtnGreen}>
+                    <TouchableOpacity style={styles.menuBtnGreen}
+                                      onPress={() => router.push("../screens/CareRequestsScreen")}>
                         <Text style={styles.menuBtnTextWhite}>New orders ▼</Text>
                     </TouchableOpacity>
                 </View>

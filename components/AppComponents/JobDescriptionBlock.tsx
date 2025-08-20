@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         color: "#222",
         marginTop: 14,
-        fontWeight: "600",
+        marginBottom: 10
+
     },
 });
