@@ -1,41 +1,42 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from "expo-router";
 
-const ProfileHeaderChat: React.FC = () => {
-    const navigation = useNavigation();
+interface Props {
+    onBack?: () => void;
+    onProfilePress?: () => void;
+}
 
-    const handleBackPress = () => {
-        navigation.goBack();
-    };
-
+const ProfileHeaderChat: React.FC<Props> = ({ onBack, onProfilePress }) => {
     return (
         <View style={styles.headerContainer}>
             {/* Back Button + Avatar in same row */}
             <View style={styles.leftContainer}>
-                <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
+                <TouchableOpacity style={styles.backButton} onPress={onBack}>
                     <Ionicons name="chevron-back" size={24} color="#000" />
                 </TouchableOpacity>
 
                 {/* Avatar Circle */}
-                <View style={styles.avatar}>
-                    {/* custom avatar icon/image can go here if needed */}
-                </View>
+                <TouchableOpacity style={styles.avatar} onPress={onProfilePress}>
+                    {/* custom avatar icon/image can go here */}
+                </TouchableOpacity>
 
                 {/* Name & Status */}
-                <View style={styles.nameContainer}>
+                <TouchableOpacity style={styles.nameContainer} onPress={onProfilePress}>
                     <Text style={styles.name}>Chris John</Text>
                     <View style={styles.statusContainer}>
                         <View style={styles.onlineDot} />
                         <Text style={styles.statusText}>Online</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
 
             {/* Call Button with Local Asset */}
             <TouchableOpacity style={styles.callButton}>
-                <Image source={require("../../assets/icons/phone.png")} style={styles.callIcon} />
+                <Image
+                    source={require("../../assets/icons/phone.png")}
+                    style={styles.callIcon}
+                />
                 <Text style={styles.callText}>Call</Text>
             </TouchableOpacity>
         </View>
@@ -43,15 +44,12 @@ const ProfileHeaderChat: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-    safeArea: {
-        backgroundColor: "transparent",
-    },
     headerContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         paddingHorizontal: 10,
-       paddingBottom:40,
+        paddingBottom: 40,
     },
     leftContainer: {
         flexDirection: "row",
@@ -82,7 +80,6 @@ const styles = StyleSheet.create({
     callIcon: {
         width: 19,
         height: 19,
-        color: "#78C45E",
         resizeMode: "contain",
     },
     callText: {

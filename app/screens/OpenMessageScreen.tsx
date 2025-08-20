@@ -9,11 +9,11 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-
 import ProfileHeaderChat from "@/components/AppComponents/ProfileHeaderChat";
 import ReceiverBubble from "@/components/AppComponents/ReceiverBubble";
 import SenderBubble from "@/components/AppComponents/SenderBubble";
 import MessageTyping from "@/components/AppComponents/MessageTyping";
+import {router, useRouter} from "expo-router";
 
 const messages = [
     { id: 1, sender: "Chris John", type: "sender", time: "6:00 am", text: "Hello! How are you?" },
@@ -25,7 +25,7 @@ const messages = [
 
 const OpenMessageScreen: React.FC = () => {
     const [keyboardVisible, setKeyboardVisible] = useState(false);
-
+    const router = useRouter();
     useEffect(() => {
         const showSub = Keyboard.addListener("keyboardDidShow", () =>
             setKeyboardVisible(true)
@@ -58,7 +58,10 @@ const OpenMessageScreen: React.FC = () => {
                         ]}
                         showsVerticalScrollIndicator={false}
                     >
-                        <ProfileHeaderChat />
+                        <ProfileHeaderChat
+                            onBack={() => router.back()}
+                            onProfilePress={() => router.push("/screens/ProfileDetailScreen")}
+                        />
 
                         {messages.map((msg, index) => {
                             const prev = messages[index - 1];
