@@ -26,10 +26,10 @@ const MessageTyping: React.FC = () => {
 
                     {/* Bottom Icons (Link & Image) */}
                     <View style={styles.bottomIcons}>
-                        <TouchableOpacity>
+                        <TouchableOpacity style={{ marginLeft: 9 }}>
                             <Entypo name="link" size={20} color="#626A83" />
                         </TouchableOpacity>
-                        <TouchableOpacity style={{ marginLeft: 16 }}>
+                        <TouchableOpacity style={{ marginLeft: 11 }}>
                             <Ionicons name="image-outline" size={20} color="#626A83" />
                         </TouchableOpacity>
                     </View>
