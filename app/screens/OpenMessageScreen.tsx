@@ -1,118 +1,56 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
-import {useNavigation} from "expo-router"; // Import Ionicons for the back button
+import { StyleSheet, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 
-const ProfileHeader: React.FC = () => {
-    const navigation = useNavigation(); // Initialize navigation
+import ProfileHeaderChat from "@/components/AppComponents/ProfileHeaderChat";
+import ReceiverBubble from "@/components/AppComponents/ReceiverBubble";
+import SenderBubble from "@/components/AppComponents/SenderBubble";
+import MessageTyping from "@/components/AppComponents/MessageTyping";
 
-    const handleBackPress = () => {
-        navigation.goBack(); // Go back to the previous screen
-    };
 
+const messages = [
+    { id: 1, sender: "Chris John", type: "sender", time: "6:00 am", text: "Hello! How are you?" },
+    { id: 2, sender: "Chris John", type: "sender", time: "6:00 am", text: "Can you send me the Invoice in pdf?" },
+    { id: 3, sender: "Me", type: "receiver", time: "6:01 am", text: "Fine! Yes sure" },
+    { id: 4, sender: "Chris John", type: "sender", time: "6:00 am", text: "Hello! How are you?" },
+    { id: 5, sender: "Chris John", type: "sender", time: "6:01 am", text: "Can you send me the Invoice in pdf?" },
+];
+
+const OpenMessageScreen: React.FC = () => {
     return (
-        <SafeAreaView style={styles.safeArea}>
-            <View style={styles.headerContainer}>
-                {/* Back Button using Ionicons */}
-                <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-                    <Ionicons name="arrow-back" size={24} color="#000" /> {/* Back Arrow Icon */}
-                </TouchableOpacity>
+        <SafeAreaView style={styles.safe}>
+            <StatusBar style="dark" backgroundColor="#fff" />
+            <ScrollView contentContainerStyle={styles.content}>
+                <ProfileHeaderChat />
 
-                {/* Profile Section */}
-                <View style={styles.profileContainer}>
-                    <Image
-                        source={{ uri: "https://placekitten.com/200/200" }} // Placeholder for profile picture
-                        style={styles.profileImage}
-                    />
-                    <View style={styles.nameContainer}>
-                        <Text style={styles.name}>Chris John</Text>
-                        {/* Status Below Name */}
-                        <View style={styles.statusContainer}>
-                            <View style={styles.onlineDot} />
-                            <Text style={styles.statusText}>Online</Text>
-                        </View>
-                    </View>
-                </View>
+                {messages.map((msg, index) => {
+                    const prev = messages[index - 1];
+                    const showAvatar = !prev || prev.sender !== msg.sender;
 
-                {/* Call Button */}
-                <TouchableOpacity style={styles.callButton}>
-                    <Image source={require("../../assets/icons/phone.png")} style={styles.icon} />
-                    <Text style={styles.callText}>Call</Text>
-                </TouchableOpacity>
-            </View>
+                    if (msg.type === "sender") {
+                        return (
+                            <SenderBubble
+                                key={msg.id}
+                                name={msg.sender}
+                                time={msg.time}
+                                message={msg.text}
+                                showAvatar={showAvatar}
+                            />
+                        );
+                    } else {
+                        return <ReceiverBubble key={msg.id} time={msg.time} message={msg.text} />;
+                    }
+                })}
+                <MessageTyping/>
+            </ScrollView>
         </SafeAreaView>
     );
 };
 
-const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        backgroundColor: "transparent", // No background for the header
-    },
-    headerContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingHorizontal: 20,
-        paddingTop: 40, // Adjust space from the top
-    },
-    backButton: {
-        padding: 10,
-    },
-    callButton: {
-        backgroundColor: "#E0FFE4",
-        paddingHorizontal: 15,
-        paddingVertical: 8,
-        borderRadius: 25,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    callText: {
-        color: "#4CAF50",
-        marginLeft: 8,
-        fontWeight: "bold",
-    },
-    icon: {
-        width: 20,
-        height: 20,
-    },
-    profileContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    profileImage: {
-        width: 40,
-        height: 40,
-        borderRadius: 50,
-        borderWidth: 2,
-        borderColor: "#4CAF50",
-        marginRight: 10,
-    },
-    nameContainer: {
-        flexDirection: "column", // Stack the name and status vertically
-        alignItems: "flex-start",
-    },
-    name: {
-        fontSize: 18,
-        fontWeight: "bold",
-    },
-    statusContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginTop: 5, // Moves the "Online" text and dot down below the name
-    },
-    onlineDot: {
-        width: 10,
-        height: 10,
-        borderRadius: 5,
-        backgroundColor: "#4CAF50",
-        marginRight: 5,
-    },
-    statusText: {
-        fontSize: 14,
-        color: "#4CAF50",
-    },
-});
+export default OpenMessageScreen;
 
-export default ProfileHeader;
+const styles = StyleSheet.create({
+    safe: { flex: 1, backgroundColor: "#fff" },
+    content: { paddingBottom: 24 },
+});
