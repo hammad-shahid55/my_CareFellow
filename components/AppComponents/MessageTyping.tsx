@@ -4,8 +4,6 @@ import {
     TextInput,
     StyleSheet,
     TouchableOpacity,
-    KeyboardAvoidingView,
-    Platform,
 } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
@@ -13,40 +11,36 @@ const MessageTyping: React.FC = () => {
     const [message, setMessage] = useState("");
 
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : undefined}
-            keyboardVerticalOffset={70}
-        >
-            <View style={styles.wrapper}>
-                <View style={styles.container}>
-                    {/* Left Input */}
-                    <View style={{ flex: 1 }}>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Type Message...."
-                            placeholderTextColor="#8E9BAE"
-                            value={message}
-                            onChangeText={setMessage}
-                        />
+        <View style={styles.wrapper}>
+            <View style={styles.container}>
+                {/* Input & Icons */}
+                <View style={{ flex: 1 }}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Type Message...."
+                        placeholderTextColor="#8E9BAE"
+                        value={message}
+                        onChangeText={setMessage}
+                        multiline
+                    />
 
-                        {/* Bottom Icons (Link & Image) */}
-                        <View style={styles.bottomIcons}>
-                            <TouchableOpacity>
-                                <Entypo name="link" size={20} color="#626A83" left="5"/>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{ marginLeft: 16 }}>
-                                <Ionicons name="image-outline" size={20} color="#626A83" />
-                            </TouchableOpacity>
-                        </View>
+                    {/* Bottom Icons (Link & Image) */}
+                    <View style={styles.bottomIcons}>
+                        <TouchableOpacity>
+                            <Entypo name="link" size={20} color="#626A83" />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{ marginLeft: 16 }}>
+                            <Ionicons name="image-outline" size={20} color="#626A83" />
+                        </TouchableOpacity>
                     </View>
-
-                    {/* Send Button */}
-                    <TouchableOpacity style={styles.sendButton}>
-                        <Ionicons name="send" size={22} color="#43B0D8" />
-                    </TouchableOpacity>
                 </View>
+
+                {/* Send Button */}
+                <TouchableOpacity style={styles.sendButton}>
+                    <Ionicons name="send" size={22} color="#43B0D8" />
+                </TouchableOpacity>
             </View>
-        </KeyboardAvoidingView>
+        </View>
     );
 };
 
@@ -56,6 +50,8 @@ const styles = StyleSheet.create({
     wrapper: {
         padding: 10,
         backgroundColor: "#fff",
+        borderColor: "#E5E5E5",
+        marginBottom:-22
     },
     container: {
         flexDirection: "row",
@@ -66,16 +62,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         paddingHorizontal: 12,
         paddingVertical: 6,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
-        elevation: 2,
     },
     input: {
         fontSize: 16,
         paddingVertical: 6,
         color: "#333",
+        maxHeight: 100, // prevent too tall input
     },
     bottomIcons: {
         flexDirection: "row",
