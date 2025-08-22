@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 interface Props {
     onBack?: () => void;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 const ProfileHeaderChat: React.FC<Props> = ({ onBack, onProfilePress }) => {
+    const router = useRouter();
+
     return (
         <View style={styles.headerContainer}>
             {/* Back Button + Avatar in same row */}
@@ -32,7 +35,10 @@ const ProfileHeaderChat: React.FC<Props> = ({ onBack, onProfilePress }) => {
             </View>
 
             {/* Call Button with Local Asset */}
-            <TouchableOpacity style={styles.callButton}>
+            <TouchableOpacity
+                style={styles.callButton}
+                onPress={() => router.push("/screens/Calls")}
+            >
                 <Image
                     source={require("../../assets/icons/phone.png")}
                     style={styles.callIcon}

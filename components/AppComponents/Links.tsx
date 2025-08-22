@@ -5,24 +5,24 @@ import {
     StyleSheet,
     TouchableOpacity,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import {Entypo, Ionicons} from "@expo/vector-icons";
 
-interface FileItem {
+interface LinkItem {
     id: string;
-    name: string;
+    url: string;
 }
 
 interface Props {
     title?: string;
-    fileCount?: number;
-    files: FileItem[];
+    linkCount?: number;
+    links: LinkItem[];
 }
 
-const RecentFiles: React.FC<Props> = ({
-                                          title = "Recent Files",
-                                          fileCount = 0,
-                                          files,
-                                      }) => {
+const Links: React.FC<Props> = ({
+                                    title = "Links",
+                                    linkCount = 0,
+                                    links,
+                                }) => {
     const [expanded, setExpanded] = useState(true);
 
     return (
@@ -34,7 +34,7 @@ const RecentFiles: React.FC<Props> = ({
             >
                 <View>
                     <Text style={styles.headerTitle}>{title}</Text>
-                    <Text style={styles.subText}>{fileCount} files</Text>
+                    <Text style={styles.subText}>{linkCount} links</Text>
                 </View>
                 <Ionicons
                     name={expanded ? "chevron-up" : "chevron-down"}
@@ -43,17 +43,13 @@ const RecentFiles: React.FC<Props> = ({
                 />
             </TouchableOpacity>
 
-            {/* File list */}
+            {/* Links list */}
             {expanded && (
                 <View style={styles.listContainer}>
-                    {files.map((item) => (
-                        <View key={item.id} style={styles.fileRow}>
-                            <Ionicons
-                                name="document-text-outline"
-                                size={20}
-                                color="#626A83"
-                            />
-                            <Text style={styles.fileName}>{item.name}</Text>
+                    {links.map((item) => (
+                        <View key={item.id} style={styles.linkRow}>
+                            <Entypo name="link" size={20} color="#626A83" />
+                            <Text style={styles.linkText}>{item.url}</Text>
                             <Ionicons
                                 name="ellipsis-horizontal"
                                 size={18}
@@ -67,7 +63,7 @@ const RecentFiles: React.FC<Props> = ({
     );
 };
 
-export default RecentFiles;
+export default Links;
 
 const styles = StyleSheet.create({
     container: {
@@ -96,16 +92,16 @@ const styles = StyleSheet.create({
     listContainer: {
         paddingBottom: 10,
     },
-    fileRow: {
+    linkRow: {
         flexDirection: "row",
         alignItems: "center",
         paddingHorizontal: 16,
         paddingVertical: 12,
     },
-    fileName: {
+    linkText: {
         flex: 1,
         marginLeft: 10,
-        fontSize: 15,
+        fontSize: 16,
         color: "#626A83",
     },
 });
